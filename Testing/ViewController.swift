@@ -9,17 +9,29 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var layoutVertical: UIStackView!
+    var shared: AppDelegate?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        shared = UIApplication.shared.delegate as? AppDelegate
+        showList()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    func showList () {
+        // let card = Bundle.main.loadNibNamed("Card", owner: UIView())?.first as! UIView
+        if shared?.postList != nil {
+            for post in (shared?.postList)! {
+                layoutVertical.addArrangedSubview(post.label!)
+            }
+        }
+    }
 }
 
